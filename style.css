@@ -1,0 +1,317 @@
+/* リセットCSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+/* 背景動画 */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#backgroundVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* メインコンテンツ */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    color: white;
+    z-index: 1;
+    position: relative;
+}
+
+.title-container {
+    margin-bottom: 3rem;
+}
+
+.main-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    letter-spacing: 0.1em;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    opacity: 0.9;
+}
+
+/* おみくじボタン */
+.button-container {
+    position: relative;
+}
+
+.omikuji-button {
+    position: relative;
+    padding: 1.5rem 3rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: white;
+    background: linear-gradient(135deg, #ff6b6b, #ffa500);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+    font-family: 'Noto Sans JP', sans-serif;
+    overflow: hidden;
+}
+
+.omikuji-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+}
+
+.omikuji-button:active {
+    transform: translateY(-1px);
+}
+
+.button-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.omikuji-button:hover .button-glow {
+    left: 100%;
+}
+
+.button-text {
+    position: relative;
+    z-index: 1;
+}
+
+/* モーダル共通スタイル */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* おみくじ実行中モーダル */
+.drawing-modal .modal-content video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.drawing-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.drawing-text {
+    color: white;
+    font-size: 2rem;
+    font-weight: 500;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* 結果表示モーダル */
+.result-modal .modal-content video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.result-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.result-container {
+    text-align: center;
+    color: white;
+    max-width: 90%;
+}
+
+.result-text {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+    animation: resultAppear 0.8s ease-out;
+}
+
+.result-description {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    line-height: 1.6;
+    animation: resultAppear 1s ease-out 0.3s both;
+}
+
+.close-button {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: white;
+    background: linear-gradient(135deg, #4a90e2, #357abd);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(74, 144, 226, 0.3);
+    font-family: 'Noto Sans JP', sans-serif;
+    animation: resultAppear 1.2s ease-out 0.6s both;
+}
+
+.close-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+}
+
+@keyframes resultAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 3rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .omikuji-button {
+        padding: 1.2rem 2.5rem;
+        font-size: 1.3rem;
+    }
+    
+    .drawing-text {
+        font-size: 1.5rem;
+    }
+    
+    .result-text {
+        font-size: 3rem;
+    }
+    
+    .result-description {
+        font-size: 1.1rem;
+    }
+    
+    .close-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .title-container {
+        margin-bottom: 2rem;
+    }
+    
+    .omikuji-button {
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+    }
+    
+    .drawing-text {
+        font-size: 1.3rem;
+    }
+    
+    .result-text {
+        font-size: 2.5rem;
+    }
+    
+    .result-description {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* 動画の読み込み状態 */
+video {
+    background-color: #000;
+}
+
+/* iOS Safari対応 */
+@supports (-webkit-touch-callout: none) {
+    .video-background,
+    .modal-content {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>おみくじWebサイト</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- メイン背景動画 -->
+    <div class="video-background">
+        <video id="backgroundVideo" autoplay muted loop playsinline>
+            <source src="douga/omikuji_get.mp4" type="video/mp4">
+            お使いのブラウザは動画をサポートしていません。
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <div class="main-content">
+        <div class="title-container">
+            <h1 class="main-title">おみくじ</h1>
+            <p class="subtitle">あなたの運勢を占います</p>
+        </div>
+        
+        <div class="button-container">
+            <button id="omikujiButton" class="omikuji-button">
+                <span class="button-text">おみくじを引く</span>
+                <div class="button-glow"></div>
+            </button>
+        </div>
+    </div>
+
+    <!-- おみくじ実行中の動画表示 -->
+    <div id="drawingModal" class="modal drawing-modal">
+        <div class="modal-content drawing-content">
+            <video id="drawingVideo" muted playsinline>
+                <source src="douga/omikuji_get.mp4" type="video/mp4">
+            </video>
+            <div class="drawing-overlay">
+                <p class="drawing-text">おみくじを引いています...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 結果表示モーダル -->
+    <div id="resultModal" class="modal result-modal">
+        <div class="modal-content result-content">
+            <video id="resultVideo" muted loop playsinline>
+                <!-- 動的に設定される -->
+            </video>
+            <div class="result-overlay">
+                <div class="result-container">
+                    <h2 id="resultText" class="result-text"></h2>
+                    <p id="resultDescription" class="result-description"></p>
+                    <button id="closeButton" class="close-button">もう一度引く</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
