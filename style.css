@@ -94,6 +94,9 @@ body {
 .omikuji-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+    background: linear-gradient(135deg, #ff8a80, #ffb74d);
+    filter: brightness(1.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .omikuji-button:active {
