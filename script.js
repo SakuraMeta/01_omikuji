@@ -22,12 +22,12 @@ const omikujiResults = [
     },
     {
         name: '末吉',
-        video: 'douga/omikuji_result_4.mp4', // 同じ動画を使用
+        video: 'douga/omikuji_result_5.mp4',
         description: '後半に向けて運気が上昇します。忍耐強く待つことが大切です。'
     },
     {
         name: '凶',
-        video: 'douga/omikuji_result_9.mp4',
+        video: 'douga/omikuji_result_6.mp4',
         description: '注意が必要な時期です。慎重に行動し、無理をしないようにしましょう。'
     },
     {
