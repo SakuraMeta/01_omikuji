@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OG画像生成</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 20px;
+            background: #f0f0f0;
+        }
+        canvas {
+            border: 2px solid #333;
+            margin: 20px 0;
+            background: white;
+        }
+        .controls {
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #5a6fd8;
+        }
+        .preview {
+            max-width: 600px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>おみくじWebサイト OG画像生成</h1>
+    <div class="controls">
+        <button onclick="generateImage()">OG画像を生成</button>
+        <button onclick="downloadImage()">画像をダウンロード</button>
+    </div>
+    
+    <canvas id="ogCanvas" width="1200" height="630"></canvas>
+    
+    <script>
+        const canvas = document.getElementById('ogCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        function generateImage() {
+            // グラデーション背景を作成
+            const gradient = ctx.createLinearGradient(0, 0, 1200, 630);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(0.5, '#764ba2');
+            gradient.addColorStop(1, '#667eea');
+            
+            // 背景を塗りつぶし
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 1200, 630);
+            
+            // 装飾的な円を追加
+            ctx.globalAlpha = 0.1;
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(200, 150, 100, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(1000, 480, 120, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.globalAlpha = 1;
+            
+            // メインタイトル
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 96px "Noto Sans JP", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            // テキストに影を追加
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+            ctx.shadowBlur = 10;
+            ctx.shadowOffsetX = 3;
+            ctx.shadowOffsetY = 3;
+            
+            ctx.fillText('おみくじ', 600, 250);
+            
+            // サブタイトル
+            ctx.font = 'normal 48px "Noto Sans JP", sans-serif';
+            ctx.fillText('あなたの運勢を占います', 600, 350);
+            
+            // 小さなテキスト
+            ctx.font = 'normal 32px "Noto Sans JP", sans-serif';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.fillText('インタラクティブな動画体験', 600, 420);
+            
+            // URL
+            ctx.font = 'normal 28px "Noto Sans JP", sans-serif';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.fillText('sakurameta.github.io/01_omikuji', 600, 520);
+            
+            // 影をリセット
+            ctx.shadowColor = 'transparent';
+            ctx.shadowBlur = 0;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+            
+            // 装飾的な絵文字
+            ctx.font = 'normal 80px serif';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.fillText('🎋', 150, 100);
+            ctx.fillText('🏮', 1050, 550);
+            ctx.fillText('✨', 950, 150);
+            ctx.fillText('🌸', 250, 550);
+        }
+        
+        function downloadImage() {
+            const link = document.createElement('a');
+            link.download = 'og-image.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+        
+        // ページ読み込み時に画像を生成
+        window.addEventListener('load', () => {
+            setTimeout(generateImage, 100);
+        });
+    </script>
+</body>
+</html>
